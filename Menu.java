@@ -53,9 +53,8 @@ public class Menu {
     
             if (resposta.equalsIgnoreCase("sim")) {
                 System.out.println(responsavel.getNome() + " veio buscar o(s) aluno(s): ");
-                // Correção: Loop para exibir todos os alunos
                 for (Aluno aluno : responsavel.getAlunos()) {
-                    System.out.println("- " + aluno.getNome());  // Exibe todos os alunos associados ao responsável
+                    System.out.println("- " + aluno.getNome());  
                 }
             } else {
                 System.out.println("Responsável não confirmado.");
