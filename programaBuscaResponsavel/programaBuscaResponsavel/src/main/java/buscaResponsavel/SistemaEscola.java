@@ -1,3 +1,5 @@
+package buscaResponsavel;
+
 import java.util.ArrayList;
 
 public class SistemaEscola {

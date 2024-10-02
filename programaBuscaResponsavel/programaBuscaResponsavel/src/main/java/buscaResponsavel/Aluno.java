@@ -1,3 +1,5 @@
+package buscaResponsavel;
+
 public class Aluno {
     private String nome;
 
