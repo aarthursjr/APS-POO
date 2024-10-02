@@ -15,15 +15,15 @@ public class Menu {
         int opcao;
 
         do {
-            System.out.println("\n==============================");
-            System.out.println("1 - Buscar Aluno");
-            System.out.println("2 - Registrar Responsável e Alunos");
-            System.out.println("3 - Encerrar Programa");
-            System.out.println("==============================");
+            System.out.println("|=================MENU DE OPÇÕES==================|");
+            System.out.println("|1 - Buscar Aluno                                 |");
+            System.out.println("|2 - Registro Responsável e Alunos                |");
+            System.out.println("|3 - Listagem de todos os Alunos                  |");
+            System.out.println("|4 - Encerrar Programa                            |");
+            System.out.println("|=================================================|");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
-            scanner.nextLine(); 
-            
+            scanner.nextLine();  // Limpa o buffer após a leitura do inteiro
 
             switch (opcao) {
                 case 1:
@@ -33,12 +33,15 @@ public class Menu {
                     registrarResponsavelEAlunos();
                     break;
                 case 3:
-                    System.out.println("Encerrando programa...");
+                    listarTodosAlunos();
+                    break;
+                case 4:
+                    System.out.println("\nEncerrando programa...\n");
                     break;
                 default:
-                    System.out.println("Opção inválida. Tente novamente.");
+                    System.out.println("\nOpção inválida. Tente novamente.\n");
             }
-        } while (opcao != 3);
+        } while (opcao != 4);  
 
         scanner.close();
     }
@@ -65,7 +68,6 @@ public class Menu {
             System.out.println("ID inválido.");
         }
     }
-    
 
     private void registrarResponsavelEAlunos() {
         System.out.print("Digite o nome do responsável: ");
@@ -92,6 +94,10 @@ public class Menu {
         }
 
         sistemaEscola.adicionarResponsavel(novoResponsavel);
-        System.out.println("Responsável e alunos registrados com sucesso!");
+        System.out.println("Responsável e alunos registrados com sucesso!\n");
+    }
+
+    private void listarTodosAlunos() {
+        sistemaEscola.listarTodosAlunos();  
     }
 }
