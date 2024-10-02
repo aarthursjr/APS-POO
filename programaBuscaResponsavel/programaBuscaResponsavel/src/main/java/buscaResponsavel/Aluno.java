@@ -11,7 +11,6 @@ public class Aluno {
         return nome;
     }
 
-    @Override
     public String toString() {
         return nome;
     }

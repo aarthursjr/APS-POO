@@ -28,8 +28,17 @@ public class Responsavel {
         this.alunos.add(aluno);
     }
 
-    @Override
-    public String toString() {
+    public boolean removerAluno(String nomeAluno) {
+        for (Aluno aluno : alunos) {
+            if (aluno.getNome().equalsIgnoreCase(nomeAluno)) {
+                alunos.remove(aluno);
+                return true; 
+            }
+        }
+        return false; 
+    }
+    
+    public String toString() {  
         return "Responsável: " + nome + " (ID: " + id + ")";
     }
 
