@@ -20,11 +20,12 @@ public class Menu {
             System.out.println("|1 - Buscar Aluno                                 |");
             System.out.println("|2 - Registro Responsável e Alunos                |");
             System.out.println("|3 - Listagem de todos os Alunos                  |");
-            System.out.println("|4 - Encerrar Programa                            |");
+            System.out.println("|4 - Remover Aluno                                |");
+            System.out.println("|5 - Encerrar Programa                            |");
             System.out.println("|=================================================|");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
-            scanner.nextLine();  // Limpa o buffer após a leitura do inteiro
+            scanner.nextLine();  
 
             switch (opcao) {
                 case 1:
@@ -37,12 +38,15 @@ public class Menu {
                     listarTodosAlunos();
                     break;
                 case 4:
+                    removerAluno();
+                    break;
+                case 5:
                     System.out.println("\nEncerrando programa...\n");
                     break;
                 default:
                     System.out.println("\nOpção inválida. Tente novamente.\n");
             }
-        } while (opcao != 4);  
+        } while (opcao != 5);  
 
         scanner.close();
     }
@@ -126,4 +130,31 @@ public class Menu {
     private void listarTodosAlunos() {
         sistemaEscola.listarTodosAlunos();  
     }
+
+
+private void removerAluno() {
+    System.out.print("Digite o ID do responsável: ");
+    String idResponsavel = scanner.nextLine();
+    
+    Responsavel responsavel = sistemaEscola.buscarResponsavelPorId(idResponsavel);
+    
+    if (responsavel != null) {
+        System.out.println("Alunos registrados para o responsável " + responsavel.getNome() + ":");
+        for (Aluno aluno : responsavel.getAlunos()) {
+            System.out.println("- " + aluno.getNome());
+        }
+        
+        System.out.print("Digite o nome do aluno a ser removido: ");
+        String nomeAluno = scanner.nextLine();
+        
+        boolean removido = responsavel.removerAluno(nomeAluno);
+        if (removido) {
+            System.out.println("Aluno removido com sucesso.");
+        } else {
+            System.out.println("Aluno não encontrado.");
+        }
+    } else {
+        System.out.println("Responsável não encontrado.");
+    }
+}
 }
