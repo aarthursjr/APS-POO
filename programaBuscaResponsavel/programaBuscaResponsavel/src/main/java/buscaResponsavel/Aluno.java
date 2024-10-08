@@ -1,6 +1,5 @@
 package buscaResponsavel;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 public class Aluno {
     private String nome;
