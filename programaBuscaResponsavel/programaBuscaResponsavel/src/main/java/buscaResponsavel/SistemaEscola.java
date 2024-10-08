@@ -7,7 +7,7 @@ public class SistemaEscola {
     private Map<String, Responsavel> responsaveis;
 
     public SistemaEscola() {
-        this.responsaveis = new HashMap<>();
+        this.responsaveis = new HashMap<String, Responsavel>();
     }
 
     public void adicionarResponsavel(Responsavel responsavel) {

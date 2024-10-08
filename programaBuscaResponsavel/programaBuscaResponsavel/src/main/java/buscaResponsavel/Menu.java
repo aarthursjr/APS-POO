@@ -1,5 +1,6 @@
 package buscaResponsavel;
 
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class Menu {
@@ -61,9 +62,15 @@ public class Menu {
             String resposta = scanner.nextLine();
     
             if (resposta.equalsIgnoreCase("sim")) {
-                System.out.println(responsavel.getNome() + " veio buscar o(s) aluno(s): ");
+                System.out.println(" Aluno(s) de " + responsavel.getNome() + ": ");
                 for (Aluno aluno : responsavel.getAlunos()) {
                     System.out.println("- " + aluno.getNome());  
+
+                    Avaliacao avaliacao = aluno.getAvaliacao();
+                    
+                    if (avaliacao.getNota() >= 0) {
+                        System.out.println("  - " + avaliacao.getStringData() + ": " + "Nota " + avaliacao.getNota() + " (" + avaliacao.getComentario() + ")");
+                    }
                 }
             } else {
                 System.out.println("Responsável não confirmado.");
@@ -84,13 +91,32 @@ public class Menu {
 
         boolean adicionarMaisAlunos = true;
         while (adicionarMaisAlunos) {
+            String resposta;
+            Avaliacao avaliacao = new Avaliacao();
+
             System.out.print("Digite o nome do aluno: ");
             String nomeAluno = scanner.nextLine();
-            Aluno aluno = new Aluno(nomeAluno);
+
+            System.out.print("Deseja adicionar uma avaliação para " + nomeAluno + "? (sim/não): ");
+            resposta = scanner.nextLine();
+            if (resposta.equalsIgnoreCase("sim")) {
+                System.out.print("Digite a nota de " + nomeAluno + ": ");
+                Integer nota = scanner.nextInt();
+                scanner.nextLine();
+
+                System.out.print("Digite um comentário (opcional): ");
+                String comentario = scanner.nextLine();
+
+                avaliacao.setNota( nota );
+                avaliacao.setComentario( comentario );
+                avaliacao.setData(LocalDateTime.now());
+            }
+
+            Aluno aluno = new Aluno(nomeAluno, avaliacao);
             novoResponsavel.adicionarAluno(aluno);
 
             System.out.print("Mais um aluno? (sim/não): ");
-            String resposta = scanner.nextLine();
+            resposta = scanner.nextLine();
 
             if (!resposta.equalsIgnoreCase("sim")) {
                 adicionarMaisAlunos = false;
