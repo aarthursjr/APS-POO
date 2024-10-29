@@ -1,17 +1,12 @@
 package buscaResponsavel;
 import java.time.LocalDateTime;
 
-public class Aluno {
-    private String nome;
+public class Aluno extends Pessoa {
     private Avaliacao avaliacao;
 
     public Aluno(String nome, Avaliacao avaliacao) {
-        this.nome = nome;
+        super(nome);
         this.avaliacao = avaliacao;
-    }
-
-    public String getNome() {
-        return nome;
     }
 
     public Avaliacao getAvaliacao() {
@@ -32,10 +27,5 @@ public class Aluno {
         else {
             return false;
         }
-    }
-
-    @Override
-    public String toString() {
-        return nome;
     }
 }
