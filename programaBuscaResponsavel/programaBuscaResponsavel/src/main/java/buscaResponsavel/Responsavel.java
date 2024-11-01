@@ -1,19 +1,14 @@
 package buscaResponsavel;
 import java.util.ArrayList;
 
-public class Responsavel {
-    private String nome;
+public class Responsavel extends Pessoa {
     private String id;
     private ArrayList<Aluno> alunos;
 
     public Responsavel(String nome, String id) {
-        this.nome = nome;
+        super(nome);
         this.id = id;
         this.alunos = new ArrayList<>();
-    }
-
-    public String getNome() {
-        return nome;
     }
 
     public String getId() {
@@ -38,8 +33,9 @@ public class Responsavel {
         return false; 
     }
     
+    @Override
     public String toString() {  
-        return "Responsável: " + nome + " (ID: " + id + ")";
+        return "Responsável: " + this.getNome() + " (ID: " + id + ")";
     }
 
 }

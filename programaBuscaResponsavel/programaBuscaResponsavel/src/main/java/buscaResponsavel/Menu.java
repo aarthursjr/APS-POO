@@ -69,9 +69,9 @@ public class Menu {
                 limparTela();
                 
                 System.out.println("Aluno(s) de " + responsavel.getNome() + ":\n");
-                System.out.println("|====================|======|==================================================|");
-                System.out.println("| NOME               | NOTA | COMENTÁRIO                                       |");
-                System.out.println("|====================|======|==================================================|");
+                System.out.println("|======================|======|====================================================|");
+                System.out.printf("| %-20s | %-4s | %-50s |%n", "NOME", "NOTA", "COMENTÁRIO");
+                System.out.println("|======================|======|====================================================|");
                 for (Aluno aluno : responsavel.getAlunos()) {
                     Avaliacao avaliacao = aluno.getAvaliacao();
                     Integer nota = avaliacao.getNota();
@@ -79,30 +79,11 @@ public class Menu {
                     if (nota >= 0) {
                         String nome = aluno.getNome();
                         String comentario = avaliacao.getComentario();
-                        String output = "| " + nome;
 
-                        for (Integer i = output.length(); i < 21; i++) {
-                            output += " ";
-                        }
-
-                        output += "| " + nota;
-
-                        for (Integer i = output.length(); i < 28; i++) {
-                            output += " ";
-                        }
-
-                        output += "| " + comentario;
-
-                        for (Integer i = output.length(); i < 79; i++) {
-                            output += " ";
-                        }
-
-                        output += "|";
-
-                        System.out.println(output);
+                        System.out.printf("| %-20s | %04d | %-50s |%n", nome, nota, comentario);
                     }
                 }
-                System.out.println("|====================|======|==================================================|");
+                System.out.println("|======================|======|====================================================|");
             } else {
                 System.out.println("Responsável não confirmado.");
             }
